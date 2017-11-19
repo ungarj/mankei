@@ -12,13 +12,13 @@ def test_array_output():
 
     # np.ndarray
     test_data = np.ones(test_shape)
-    output = hillshade.simple(test_data)
+    output = hillshade(test_data)
     assert isinstance(output, np.ndarray)
     assert output.shape == test_shape
     assert not isinstance(output, ma.masked_array)
 
     # ma.masked_array
     test_data = ma.masked_array(data=np.ones(test_shape))
-    output = hillshade.simple(test_data)
+    output = hillshade(test_data)
     assert isinstance(output, ma.masked_array)
     assert output.shape == test_shape

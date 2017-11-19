@@ -7,7 +7,7 @@ import numpy as np
 
 extensions = [
     Extension(
-        "mankei.hillshade", ["mankei/hillshade.pyx"],
+        "mankei._hillshade", ["mankei/_hillshade.pyx"],
         include_dirs=[np.get_include()]
     )
 ]
