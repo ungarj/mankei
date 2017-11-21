@@ -3,8 +3,10 @@
 import os
 import timeit
 
-number = 10
+number = 100
 repeat = 3
+
+print "average over %s runs, best of %s" % (number, repeat)
 
 for f in ["gdal_cli.tif", "python.tif", "cython.tif"]:
     if os.path.isfile(f):
@@ -22,14 +24,13 @@ stdoutdata, stderrdata = process.communicate()
 setup = """
 from subprocess import Popen, PIPE, STDOUT
 """
-print "GDAL CLI best of %s: %ss" % (
-    repeat,
+print "GDAL CLI: %sms" % (
     min(
         timeit.repeat(command, setup=setup, number=number, repeat=repeat)
-    ) / number
+    ) * 1000 / number
 )
 
-# naive python implementation
+# pure Python/NumPy implementation
 command = """
 with rasterio.open("test/testdata/6-22-33.tif") as src:
     out_profile = src.meta
@@ -42,11 +43,10 @@ setup = """
 import rasterio
 from naive_hillshading import hillshade
 """
-print "Python best of %s: %ss" % (
-    repeat,
+print "Python:   %sms" % (
     min(
         timeit.repeat(command, setup=setup, number=number, repeat=repeat)
-    ) / number
+    ) * 1000 / number
 )
 
 # Cython
@@ -62,9 +62,8 @@ setup = """
 import rasterio
 from mankei import hillshade
 """
-print "Cythonized best of %s: %ss" % (
-    repeat,
+print "Cython:   %sms" % (
     min(
         timeit.repeat(command, setup=setup, number=number, repeat=repeat)
-    ) / number
+    ) * 1000 / number
 )
