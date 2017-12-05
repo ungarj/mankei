@@ -3,9 +3,9 @@
 import os
 import timeit
 
-number = 100
+number = 10
 repeat = 3
-testdata = "test/testdata/6-22-33.tif"
+testdata = "test/testdata/1024x1024.tif"
 
 print "average over %s runs, best of %s" % (number, repeat)
 

@@ -27,5 +27,5 @@ def test_array_output():
 
 
 def test_with_dem():
-    with rasterio.open("test/testdata/6-22-33.tif") as dem:
+    with rasterio.open("test/testdata/256x256.tif") as dem:
         output = hillshade(dem.read(1), dem.affine[0])

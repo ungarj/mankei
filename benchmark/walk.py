@@ -6,7 +6,7 @@ import tqdm
 
 from mankei import hillshade
 
-PATH = "/home/ungarj/geodata/cleantopo/mercator_tiled/output/8/"
+PATH = "/home/ungarj/geodata/cleantopo/mercator_tiled/output/4/"
 
 files = [
     y
